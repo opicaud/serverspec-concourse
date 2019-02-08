@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+
+require 'date'
+require 'json'
+
+# Build the result and send to STDOUT
+ret = []
+    ret << { "version": DateTime.now}
+
+
+# Return the expected JSON to STDOUT
+puts ret.to_json
+
