@@ -1,0 +1,22 @@
+resource_types:
+- name: serverspec
+  type: docker-image
+  source:
+    repository: 51.15.179.65:8082/serversec-concourse
+    insecure_registries: ["51.15.179.65:8082"]
+    username: admin
+    password: admin123
+
+
+resources:
+- name: check-test-environment
+  type: serverspec
+  source:
+    host: ec2-35-180-196-6.eu-west-3.compute.amazonaws.com
+    user: admin
+    ssh_key: ((aws-key))
+
+jobs:
+- name: run-some-infra-tests
+  plan:
+  - put: check-test-environment
