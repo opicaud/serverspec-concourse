@@ -7,9 +7,18 @@ source = JSON.parse(sSource)
 host = source["source"]["host"]
 user = source["source"]["user"]
 ssh_key = source["source"]["ssh_key"]
+tests = source["params"]["tests"]
 
 
 STDERR.puts "Lancement des tests"
+
+f = File.open(test, "r")
+f.each_line do |line|
+  puts line
+end
+f.close
+
+
 
 ret = {
     "version": {"host": host, "user": user},

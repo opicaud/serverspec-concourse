@@ -30,4 +30,4 @@ jobs:
   - get: source-code
   - put: check-test-environment
     params:
-      inventory: hosts
+      tests: source-code/test.rb
