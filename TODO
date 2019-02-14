@@ -1,0 +1,9 @@
+add serverspec to Dockerfile
+create directory with the name of hosts (pipeline vars)
+insert ssh key to /.ssh/id_rsa (pipeline vars)
+insert user into rakefile (pipeline vars)
+launch tests
+create README.md
+create v1
+push to dockerhub and github
+integrate with "demo" pipeline
