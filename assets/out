@@ -3,6 +3,8 @@
 require 'json'
 require 'fileutils'
 
+
+
 sSource = STDIN.read
 source = JSON.parse(sSource)
 host = source["source"]["host"]
@@ -12,12 +14,17 @@ tests = source["params"]["tests"]
 
 sourceDir = ARGV[0]
 
-sourceFile = File.join(sourceDir, tests)
-plop = File.read(sourceFile)
+hostDir = "/serverspec/spec/" + host
+STDERR.puts hostDir
 
-STDERR.puts "Lancement des tests"
+FileUtils.mkdir_p hostDir
 
-STDERR.puts plop
+
+listeDir = `ls -aRl /serverspec`
+STDERR.puts listeDir
+
+testFile = File.join(sourceDir, tests)
+testContent = File.read(testFile)
 
 
 ret = {
