@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'json'
+require 'fileutils'
 
 sSource = STDIN.read
 source = JSON.parse(sSource)
@@ -9,15 +10,14 @@ user = source["source"]["user"]
 ssh_key = source["source"]["ssh_key"]
 tests = source["params"]["tests"]
 
+sourceDir = ARGV[0]
+
+sourceFile = File.join(sourceDir, tests)
+plop = File.read(sourceFile)
 
 STDERR.puts "Lancement des tests"
 
-f = File.open(test, "r")
-f.each_line do |line|
-  puts line
-end
-f.close
-
+STDERR.puts plop
 
 
 ret = {
