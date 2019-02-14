@@ -4,6 +4,18 @@ require 'json'
 require 'fileutils'
 
 
+def create_host_directory(host)
+    hostDir = "/serverspec/spec/" + host
+    FileUtils.mkdir_p hostDir
+end
+
+def add_ssh_key(ssh_key)
+    FileUtils.mkdir_p "/root/.ssh"
+    ssh_key_file = File.join("/root/.ssh", "id_rsa")
+    File.open(ssh_key_file, 'w') { |file| file.write(ssh_key) }
+end
+
+
 
 sSource = STDIN.read
 source = JSON.parse(sSource)
@@ -14,18 +26,16 @@ tests = source["params"]["tests"]
 
 sourceDir = ARGV[0]
 
-hostDir = "/serverspec/spec/" + host
-STDERR.puts hostDir
+create_host_directory(host)
+add_ssh_key(ssh_key)
 
-FileUtils.mkdir_p hostDir
+dest_folder = "/serverspec/spec/" + host
+FileUtils.cp(File.join(sourceDir, tests), dest_folder)
 
+Dir.chdir "/serverspec"
 
-listeDir = `ls -aRl /serverspec`
-STDERR.puts listeDir
-
-testFile = File.join(sourceDir, tests)
-testContent = File.read(testFile)
-
+output = `rake`
+STDERR.puts output
 
 ret = {
     "version": {"host": host, "user": user},
