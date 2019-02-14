@@ -1,7 +1,5 @@
-add serverspec to Dockerfile
-create directory with the name of hosts (pipeline vars)
 insert ssh key to /.ssh/id_rsa (pipeline vars)
-insert user into rakefile (pipeline vars)
+insert user into spec/spec_helper.rb (pipeline vars)
 launch tests
 create README.md
 create v1
