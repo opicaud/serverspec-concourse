@@ -13,7 +13,7 @@ resources:
 - name: check-test-environment
   type: serverspec
   source:
-    host: ec2-35-180-196-6.eu-west-3.compute.amazonaws.com
+    host: ec2-35-180-43-17.eu-west-3.compute.amazonaws.com
     user: admin
     ssh_key: ((aws-key))
 
