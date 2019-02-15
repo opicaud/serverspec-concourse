@@ -2,19 +2,9 @@
 
 require 'json'
 require 'fileutils'
-
-
-def create_host_directory(host)
-    hostDir = "/serverspec/spec/" + host
-    FileUtils.mkdir_p hostDir
-end
-
-def add_ssh_key(ssh_key)
-    FileUtils.mkdir_p "/root/.ssh"
-    ssh_key_file = File.join("/root/.ssh", "id_rsa")
-    File.open(ssh_key_file, 'w') { |file| file.write(ssh_key) }
-end
-
+require 'open3'
+require 'lib/host'
+require 'lib/ssh'
 
 
 sSource = STDIN.read
@@ -26,16 +16,21 @@ tests = source["params"]["tests"]
 
 sourceDir = ARGV[0]
 
-create_host_directory(host)
 add_ssh_key(ssh_key)
-
-dest_folder = "/serverspec/spec/" + host
-FileUtils.cp(File.join(sourceDir, tests), dest_folder)
+create_host_directory("/serverspec/spec/",host)
+set_ssh_user("/serverspec/spec/spec_helper.rb",user)
+copy_spec_to_host_folder(File.join(sourceDir, tests),"/serverspec/spec/",host)
 
 Dir.chdir "/serverspec"
+stdout, stderr, status = Open3.capture3("rake")
 
-output = `rake`
-STDERR.puts output
+STDERR.puts stdout
+STDERR.puts stderr
+
+if not status.success?
+  exit 1
+end
+
 
 ret = {
     "version": {"host": host, "user": user},
