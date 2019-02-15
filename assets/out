@@ -3,8 +3,8 @@
 require 'json'
 require 'fileutils'
 require 'open3'
-require 'lib/host'
-require 'lib/ssh'
+require_relative 'lib/host.rb'
+require_relative 'lib/ssh.rb'
 
 
 sSource = STDIN.read
