@@ -18,7 +18,7 @@ host = ENV['TARGET_HOST']
 
 options = Net::SSH::Config.for(host)
 
-options[:user] = "admin"
+options[:user] = "{{ user }}"
 
 set :host,        options[:host_name] || host
 set :ssh_options, options
