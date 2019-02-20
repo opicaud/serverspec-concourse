@@ -17,9 +17,9 @@ tests = source["params"]["tests"]
 sourceDir = ARGV[0]
 
 add_ssh_key(ssh_key)
-create_host_directory("/serverspec/spec/",host)
-set_ssh_user("/serverspec/spec/spec_helper.rb",user)
-copy_spec_to_host_folder(File.join(sourceDir, tests),"/serverspec/spec/",host)
+create_host_directory(host)
+set_ssh_user(user)
+copy_spec_to_host_folder(File.join(sourceDir, tests),host)
 
 Dir.chdir "/serverspec"
 stdout, stderr, status = Open3.capture3("rake")

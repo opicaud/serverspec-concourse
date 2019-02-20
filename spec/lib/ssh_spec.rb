@@ -1,4 +1,4 @@
-require_relative '../ssh.rb'
+require_relative '../../assets/lib/ssh.rb'
 
 describe '::CreateSSHConfiguration' do
 
@@ -34,7 +34,7 @@ context "when I configure ssh for serverspec, the operating system" do
    end
 
    it "change the user in the helper with the ssh user provided by concourse" do
-           creator.set_ssh_user("/serverspec/spec/spec_helper.rb","ssh-user-provided-by-concourse")
+           creator.set_ssh_user("ssh-user-provided-by-concourse")
            expect(block).to have_received(:puts).with("some content with a ssh-user-provided-by-concourse to replace")
    end
 

@@ -4,14 +4,17 @@ class CreateHostConfiguration
 
     include FileUtils
 
+def initialize
+    @serverspecPath = "/serverspec/"
+end
 
-def create_host_directory(path,host)
-    hostDir = path + host
+def create_host_directory(host)
+    hostDir = @serverspecPath + host
     mkdir_p hostDir
 end
 
-def copy_spec_to_host_folder(pathOfTestFile,destPath,host)
-    dest_folder = destPath + host
+def copy_spec_to_host_folder(pathOfTestFile,host)
+    dest_folder = @serverspecPath + host
     cp(pathOfTestFile, dest_folder)
 end
 
