@@ -1,5 +1,5 @@
-require_relative 'host.rb'
-require_relative 'ssh.rb'
+require_relative 'private/host.rb'
+require_relative 'private/ssh.rb'
 require 'json'
 
 

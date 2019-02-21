@@ -1,4 +1,4 @@
-require_relative '../../assets/lib/host.rb'
+require_relative '../../../assets/lib/private/host.rb'
 
 describe '::HostConfiguration' do
 

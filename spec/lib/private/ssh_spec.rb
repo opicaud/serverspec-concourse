@@ -1,4 +1,4 @@
-require_relative '../../assets/lib/ssh.rb'
+require_relative '../../../assets/lib/private/ssh.rb'
 
 describe '::SSHConfiguration' do
 
