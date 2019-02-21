@@ -2,20 +2,20 @@ require 'fileutils'
 
 class HostConfiguration
 
-    include FileUtils
+  include FileUtils
 
-def initialize
+  def initialize
     @serverspecPath = "/serverspec/spec/"
-end
+  end
 
-def create_host_directory(host)
+  def create_host_directory(host)
     hostDir = @serverspecPath + host
     mkdir_p hostDir
-end
+  end
 
-def copy_spec_to_host_folder(pathOfTestFile,host)
+  def copy_spec_to_host_folder(pathOfTestFile, host)
     dest_folder = @serverspecPath + host
     cp(pathOfTestFile, dest_folder)
-end
+  end
 
 end

@@ -12,7 +12,7 @@ ret = {
     "version": {"host": host, "user": user},
 
     "metadata": [
-        {"name": "a-metadata", "value":"in"}
+        {"name": "a-metadata", "value": "in"}
     ]
 }
 

@@ -9,7 +9,7 @@ if ENV['ASK_SUDO_PASSWORD']
   rescue LoadError
     fail "highline is not available. Try installing it."
   end
-  set :sudo_password, ask("Enter sudo password: ") { |q| q.echo = false }
+  set :sudo_password, ask("Enter sudo password: ") {|q| q.echo = false}
 else
   set :sudo_password, ENV['SUDO_PASSWORD']
 end
@@ -20,7 +20,7 @@ options = Net::SSH::Config.for(host)
 
 options[:user] = "{{ user }}"
 
-set :host,        options[:host_name] || host
+set :host, options[:host_name] || host
 set :ssh_options, options
 
 # Disable sudo

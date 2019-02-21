@@ -5,42 +5,42 @@ require 'json'
 
 class ServerspecConfiguration
 
-def initialize(jsonFile, hostConfiguration,sshConfiguration, source_concourse)
+  def initialize(jsonFile, hostConfiguration, sshConfiguration, source_concourse)
     @jsonFile = jsonFile
     @hostConfiguration = hostConfiguration
     @sshConfiguration = sshConfiguration
     @source_concourse = source_concourse
     jsonFile = JSON.parse(@jsonFile)
-    @source_items  = jsonFile["source"]
+    @source_items = jsonFile["source"]
     @params_items = jsonFile["params"]
 
-end
+  end
 
-def run()
+  def run()
     runHostConfiguration(@params_items["tests"], host())
     runSshConfiguration(user(), @source_items["ssh_key"])
-end
+  end
 
 
-def host()
+  def host()
     return @source_items["host"]
-end
+  end
 
-def user()
+  def user()
     return @source_items["user"]
-end
+  end
 
-private
+  private
 
-def runHostConfiguration(tests,host)
+  def runHostConfiguration(tests, host)
     @hostConfiguration.create_host_directory(host)
-    @hostConfiguration.copy_spec_to_host_folder(File.join(@source_concourse,tests),host)
-end
+    @hostConfiguration.copy_spec_to_host_folder(File.join(@source_concourse, tests), host)
+  end
 
-def runSshConfiguration(user, ssh_key)
+  def runSshConfiguration(user, ssh_key)
     @sshConfiguration.set_ssh_user(user)
     @sshConfiguration.add_ssh_key(ssh_key)
 
-end
+  end
 
 end

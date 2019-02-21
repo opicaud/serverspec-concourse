@@ -6,7 +6,7 @@ require 'json'
 
 # Build the result and send to STDOUT
 ret = []
-    ret << { "version": DateTime.now}
+ret << {"version": DateTime.now}
 
 
 # Return the expected JSON to STDOUT

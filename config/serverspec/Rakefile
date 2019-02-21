@@ -1,7 +1,7 @@
 require 'rake'
 require 'rspec/core/rake_task'
 
-task :spec    => 'spec:all'
+task :spec => 'spec:all'
 task :default => :spec
 
 namespace :spec do
@@ -13,7 +13,7 @@ namespace :spec do
     targets << target
   end
 
-  task :all     => targets
+  task :all => targets
   task :default => :all
 
   targets.each do |target|

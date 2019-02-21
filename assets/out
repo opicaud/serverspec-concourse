@@ -9,9 +9,9 @@ json_concourse = STDIN.read
 source_concourse = ARGV[0]
 
 serverspecConfiguration = ServerspecConfiguration.new(json_concourse,
-                            HostConfiguration.new,
-                            SSHConfiguration.new(File),
-                            source_concourse)
+                                                      HostConfiguration.new,
+                                                      SSHConfiguration.new(File),
+                                                      source_concourse)
 
 serverspecConfiguration.run
 
@@ -30,7 +30,7 @@ ret = {
     "version": {"host": serverspecConfiguration.host, "user": serverspecConfiguration.user},
 
     "metadata": [
-        {"name": "a-metadata", "value":"out"}
+        {"name": "a-metadata", "value": "out"}
     ]
 }
 
