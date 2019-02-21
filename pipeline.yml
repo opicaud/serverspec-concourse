@@ -30,4 +30,4 @@ jobs:
   - get: source-code
   - put: check-test-environment
     params:
-      tests: source-code/test_spec.rb
+      tests: source-code/example_test_spec.rb
