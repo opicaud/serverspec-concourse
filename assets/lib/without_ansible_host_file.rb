@@ -5,7 +5,7 @@ class CreateHostConfiguration
     include FileUtils
 
 def initialize
-    @serverspecPath = "/serverspec/spec/"
+    @serverspecPath = "/serverspec/"
 end
 
 def create_host_directory(host)
