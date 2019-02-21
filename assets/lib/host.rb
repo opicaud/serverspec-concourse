@@ -1,6 +1,6 @@
 require 'fileutils'
 
-class CreateHostConfiguration
+class HostConfiguration
 
     include FileUtils
 

@@ -1,6 +1,6 @@
 require_relative '../../assets/lib/ssh.rb'
 
-describe '::CreateSSHConfiguration' do
+describe '::SSHConfiguration' do
 
 context "when I configure ssh for serverspec, the operating system" do
 
@@ -22,7 +22,7 @@ context "when I configure ssh for serverspec, the operating system" do
       end
 
    let(:creator) do
-    creator=CreateSSHConfiguration.new(file)
+    creator=SSHConfiguration.new(file)
      allow(creator).to receive(:mkdir_p)
 
     creator

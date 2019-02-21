@@ -1,4 +1,4 @@
-class CreateSSHConfiguration
+class SSHConfiguration
 
 include FileUtils
 

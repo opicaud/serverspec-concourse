@@ -1,10 +1,10 @@
 require_relative '../../assets/lib/host.rb'
 
-describe '::CreateHostConfiguration' do
+describe '::HostConfiguration' do
 
 context "when I configure serverspec, the operating system" do
    let(:creator) do
-    creator=CreateHostConfiguration.new
+    creator=HostConfiguration.new
     allow(creator).to receive(:mkdir_p)
     allow(creator).to receive(:cp)
     creator

@@ -3,25 +3,34 @@ require_relative 'ssh.rb'
 require 'json'
 
 
-class WithoutAnsibleHostFile
+class ServerspecConfiguration
 
 def initialize(jsonFile, hostConfiguration,sshConfiguration, source_concourse)
     @jsonFile = jsonFile
     @hostConfiguration = hostConfiguration
     @sshConfiguration = sshConfiguration
     @source_concourse = source_concourse
+    jsonFile = JSON.parse(@jsonFile)
+    @source_items  = jsonFile["source"]
+    @params_items = jsonFile["params"]
+
 end
 
 def run()
-    jsonFile = JSON.parse(@jsonFile)
-    source_items  = jsonFile["source"]
-    params_items = jsonFile["params"]
-
-    runHostConfiguration(params_items["tests"], source_items["host"])
-    runSshConfiguration(source_items["user"], source_items["ssh_key"])
-
+    runHostConfiguration(@params_items["tests"], host())
+    runSshConfiguration(user(), @source_items["ssh_key"])
 end
 
+
+def host()
+    return @source_items["host"]
+end
+
+def user()
+    return @source_items["user"]
+end
+
+private
 
 def runHostConfiguration(tests,host)
     @hostConfiguration.create_host_directory(host)
