@@ -19,7 +19,7 @@ context "when Concourse run the out script, " do
       end
 
    let(:jsonFile) do
-    jsonFile = File.read('spec/lib/source.json')
+    jsonFile = File.read('spec/resources/source.json')
     jsonFile
    end
 
