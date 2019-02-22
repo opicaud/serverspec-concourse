@@ -3,26 +3,52 @@ require_relative 'serverspec_ansible_configuration.rb'
 
 
 class ServerspecStrategy
-  def initialize(json_concourse)
-    if JSON.parse(json_concourse)["params"]["inventory"].nil?
-      @strategy=ServerspecConfiguration.new(json_concourse,HostConfiguration.new, SSHConfiguration.new(File), ARGV[0])
-    else
-      @strategy=ServerspecAnsibleConfiguration.new(json_concourse,HostConfiguration.new, SSHConfiguration.new(File), ARGV[0])
+  def initialize(json_concourse, hostConfiguration, sshConfiguration,source_concourse)
+    @jsonFile = JSON.parse(json_concourse)
+    @params = @jsonFile["params"]
+    @source = @jsonFile["source"]
 
-    end
+    @hostConfiguration = hostConfiguration
+    @sshConfiguration = sshConfiguration
+
+    @source_concourse = source_concourse
+
+    @strategy = determineStrategy
 
   end
 
   def run()
-    return @strategy.run
+    runHostConfiguration(@params["tests"], host)
+    runSshConfiguration(user, @source["ssh_key"])
   end
 
   def host()
-    return @strategy.host
+    @strategy.host
   end
 
   def user()
-    return @strategy.user
+    @strategy.user
   end
+
+  private
+
+  def determineStrategy
+    if @jsonFile["params"]["inventory"].nil?
+      ServerspecConfiguration.new(@source)
+    else
+      ServerspecAnsibleConfiguration.new(@params, @source_concourse)
+    end
+  end
+
+  def runHostConfiguration(tests, host)
+    @hostConfiguration.create_host_directory(host)
+    @hostConfiguration.copy_spec_to_host_folder(File.join(@source_concourse, tests), host)
+  end
+
+  def runSshConfiguration(user, ssh_key)
+    @sshConfiguration.set_ssh_user(user)
+    @sshConfiguration.add_ssh_key(ssh_key)
+  end
+
 
 end

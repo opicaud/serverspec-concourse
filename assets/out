@@ -8,7 +8,10 @@ require_relative "lib/serverspec_strategy.rb"
 json_concourse = STDIN.read
 
 
-serverspec_strategy = ServerspecStrategy.new(json_concourse)
+serverspec_strategy = ServerspecStrategy.new(json_concourse,
+                                             HostConfiguration.new,
+                                             SSHConfiguration.new(File),
+                                             ARGV[0])
 serverspec_strategy.run
 
 Dir.chdir "/serverspec"
