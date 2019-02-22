@@ -25,7 +25,7 @@ describe '::ServerspecAnsibleConfiguration' do
     end
 
     let(:serverspecConfiguration) do
-      serverspecConfiguration = ServerspecAnsibleConfiguration.new(jsonFile, hostConfiguration, sshConfiguration, "source_concourse")
+      serverspecConfiguration = ServerspecAnsibleConfiguration.new(jsonFile, hostConfiguration, sshConfiguration, ".")
       serverspecConfiguration
     end
 
@@ -37,7 +37,7 @@ describe '::ServerspecAnsibleConfiguration' do
 
     it "copy the spec to the host folder" do
       serverspecConfiguration.run
-      path = "source_concourse/" + JSON.parse(jsonFile)["params"]["tests"]
+      path = "./" + JSON.parse(jsonFile)["params"]["tests"]
       expect(hostConfiguration).to have_received(:copy_spec_to_host_folder).with(path, "ec2-35-180-46-86.eu-west-3.compute.amazonaws.com")
     end
 

@@ -19,21 +19,33 @@ class ServerspecAnsibleConfiguration
 
   def run()
     runHostConfiguration(@params_items["tests"], host)
-    runSshConfiguration(user,@source_items["ssh_key"])
+    runSshConfiguration(user, @source_items["ssh_key"])
   end
 
 
   def host()
-    parser = AnsibleParser.new(@params_items["inventory"])
+    parser = AnsibleParser.new(File.join(@source_concourse, @params_items["inventory"]))
    return parser.findHost
   end
 
   def user()
-    parser = AnsibleParser.new(@params_items["inventory"])
+    parser = AnsibleParser.new(File.join(@source_concourse, @params_items["inventory"]))
     return parser.findUser
   end
 
   private
 
+  private
+
+  def runHostConfiguration(tests, host)
+    @hostConfiguration.create_host_directory(host)
+    @hostConfiguration.copy_spec_to_host_folder(File.join(@source_concourse, tests), host)
+  end
+
+  def runSshConfiguration(user, ssh_key)
+    @sshConfiguration.set_ssh_user(user)
+    @sshConfiguration.add_ssh_key(ssh_key)
+
+  end
 
 end

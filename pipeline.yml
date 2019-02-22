@@ -13,8 +13,6 @@ resources:
   - name: check-test-environment
     type: serverspec
     source:
-      host: ((host-to-run-the-tests))
-      user: ((ssh-user-to-connect-to-host))
       ssh_key: ((ssh-key-of-the-user))
 
   - name: source-code
