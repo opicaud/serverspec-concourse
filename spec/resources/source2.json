@@ -1,0 +1,15 @@
+{
+  "source": {
+    "host": "a-host.to-test",
+    "user": "admin",
+    "ssh_key": "an-ssh-key"
+  },
+  "params": {
+    "tests": "plop",
+    "inventory": "example_host"
+
+  },
+  "version": {
+    "ref": "61cebf"
+  }
+}

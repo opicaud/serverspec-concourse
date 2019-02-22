@@ -31,3 +31,4 @@ jobs:
       - put: check-test-environment
         params:
           tests: source-code/example_test_spec.rb
+          inventory: source-code/example_host

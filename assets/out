@@ -2,18 +2,14 @@
 
 require 'json'
 require 'open3'
-require_relative "lib/serverspec_configuration.rb"
+require_relative "lib/serverspec_strategy.rb"
 
 
 json_concourse = STDIN.read
-source_concourse = ARGV[0]
 
-serverspecConfiguration = ServerspecConfiguration.new(json_concourse,
-                                                      HostConfiguration.new,
-                                                      SSHConfiguration.new(File),
-                                                      source_concourse)
 
-serverspecConfiguration.run
+serverspec_strategy = ServerspecStrategy.new(json_concourse)
+serverspec_strategy.run
 
 Dir.chdir "/serverspec"
 stdout, stderr, status = Open3.capture3("rake")
@@ -27,7 +23,7 @@ end
 
 
 ret = {
-    "version": {"host": serverspecConfiguration.host, "user": serverspecConfiguration.user},
+    "version": {"host": serverspec_strategy.host, "user": serverspec_strategy.user},
 
     "metadata": [
         {"name": "a-metadata", "value": "out"}
