@@ -2,10 +2,17 @@
 
 This is [Serverspec](https://serverspec.org/) resource for [Concourse](http://concourse.ci) to be able to execute Serverspec tests from concourse.
 
+The description on the **Source Configuration** below is corresponding to the **latest** version of the resource.
 
-## Source Configuration v0.0.2
+# Source Configuration v0.0.2
 
-Run serverspec with a host and user found into an **ansible inventory** file
+Run serverspec with a host and user found into an **INI ansible inventory**  file
+For instance : 
+
+```
+[masters]
+master ansible_host=host-to-run-the-tests ansible_user=ssh-user-to-connect-to-host
+```
 
 Parameters available to use in the resource definition. 
 * `ssh_key`: A string containing the ssh private key used for ssh connections.
@@ -25,7 +32,8 @@ resource_types:
 - name: serverspec  
   type: docker-image  
   source:  
-    repository: opicaud/serverspec-concourse 
+    repository: opicaud/serverspec-concourse
+    tag: 0.0.2
     
 resources:  
 - name: check-test-environment  
@@ -52,7 +60,7 @@ jobs:
 
 
 
-## Source Configuration v0.0.1
+# Source Configuration v0.0.1
 
 Run serverspec with host and user declared into the pipeline
 

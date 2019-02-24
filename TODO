@@ -1,7 +1,0 @@
-insert ssh key to /.ssh/id_rsa (pipeline vars)
-insert user into spec/spec_helper.rb (pipeline vars)
-launch tests
-create README.md
-create v1
-push to dockerhub and github
-integrate with "demo" pipeline
