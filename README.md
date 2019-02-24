@@ -6,6 +6,8 @@ The description on the **Source Configuration** below is corresponding to the **
 
 # Source Configuration v0.0.2
 
+Compatible with **v0.0.1**
+
 Run serverspec with a host and user found into an **INI ansible inventory**  file
 For instance : 
 
@@ -17,10 +19,11 @@ master ansible_host=host-to-run-the-tests ansible_user=ssh-user-to-connect-to-ho
 Parameters available to use in the resource definition. 
 * `ssh_key`: A string containing the ssh private key used for ssh connections.
 
+
 #### Parameters
 
-* `tests`: File where you put your tests
-* `inventory`: File where you have your ansible inventory
+* `tests`: File where you put your serverspec tests
+* `inventory`: File where you have your INI ansible inventory
 
 
 ## Example Pipeline
@@ -71,7 +74,7 @@ Parameters available to use in the resource definition.
 
 #### Parameters
 
-* `tests`: File where you put your tests
+* `tests`: File where you put your serverspec tests
 
 ## Example Pipeline
 
