@@ -3,11 +3,8 @@ resource_types:
   - name: serverspec
     type: docker-image
     source:
-      repository: 51.15.179.65:8082/serverspec-concourse
-      insecure_registries: ["51.15.179.65:8082"]
-      username: admin
-      password: admin123
-
+      repository: opicaud/serverspec-concourse
+      tag: 0.0.2
 
 resources:
   - name: check-test-environment
